@@ -6,16 +6,12 @@ import random
 def display_tab_content(tab_num):
     selected_value = int(selected_option[tab_num-1].get())
     image_path = image_paths[tab_num-1][selected_value-1]
-    
-    # Close the last opened image window
-    if hasattr(display_tab_content, 'last_image_window') and display_tab_content.last_image_window:
-        display_tab_content.last_image_window.destroy()
 
     # Open a new Toplevel window for image display
     image_window = tk.Toplevel(root)
     image_window.title(f"Image Display - {image_path}")
-    display_tab_content.last_image_window = image_window
-    
+    image_windows.append(image_window)
+
     img = Image.open(image_path)
     photo = ImageTk.PhotoImage(img)
     image_label = tk.Label(image_window, image=photo)
@@ -46,7 +42,7 @@ image_paths = [
     ["20_SB_open_jam.png", "20_SB_open_fold.png", "20_SB_minraise_call_jam.png", "20_SB_minraise.png", "20_SB_limp.png", "20_SB_limp_call_all_in.png", "20_BB_raise_limp_to_2_5bb.png", "20_BB_jam_facing_minraise.png", "20_BB_jam_facing_limp.png", "20_BB_call_facing_open_jam.png", "20_BB_call_facing_minraise.png", "20_BB_3bet_to_4_5bb.png"]
 ]
 
-image_labels = []
+image_windows = []
 
 for i in range(1, 5):
     bb = 0
