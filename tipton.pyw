@@ -9,7 +9,8 @@ def display_tab_content(tab_num):
 
     # Open a new Toplevel window for image display
     image_window = tk.Toplevel(root)
-    image_window.title(f"Image Display - {image_path}")
+    image_window.iconbitmap("mush_small.ico")
+    image_window.title(f"{image_path[:-4]}")
     image_windows.append(image_window)
 
     img = Image.open(image_path)
